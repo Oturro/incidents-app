@@ -1,30 +1,22 @@
 'use server'
 
 import { db } from "@/lib/db"
-import { revalidatePath } from "next/cache"
-import { string, z } from "zod"
 
 
 
-export async function create(user: any) {
+
+
+export async function create(user: { id: string, name: string, email: string }) {
     try {
         const { name, email } = user
 
-        const adminRole = await db.role.findFirst({
-            where: {
-                name: 'user'
-            }
-        })
+        
 
         const createdUser = await db.user.create({
             data: {
                 name, 
                 email,
-                role: {
-                    connect: {
-                        id: adminRole?.id
-                    }
-                },
+                role: "user",
                 accounts: {
                     create: []
                 },

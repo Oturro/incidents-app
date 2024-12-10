@@ -1,6 +1,6 @@
 
 
-import LogoutButton from '@/app/(auth)/_components/LogoutButton'
+
 import { auth } from '../../../../auth'
 import IncidentsIndex from '../_components/IncidentsIndex'
 

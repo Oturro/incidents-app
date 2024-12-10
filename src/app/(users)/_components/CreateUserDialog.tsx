@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
+    
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -17,7 +17,7 @@ const CreateUserDialog = () => {
     const [open, setOpen] = useState<boolean>(false)
 
 
-    const submit = async (values: any) => {
+    const submit = async (values: { name: string; email: string }) => {
         await createUser(values)
         setOpen(false)
     }

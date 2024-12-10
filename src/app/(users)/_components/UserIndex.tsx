@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
     Table,
     TableBody,
@@ -12,10 +12,10 @@ import {
 import CreateUserDialog from './CreateUserDialog'
 import { findAll } from '@/app/actions/users.actions'
 import { User } from '@prisma/client'
-import useSWR from 'swr'
+
 import { useUsers } from '../hooks/useUsers'
 
-const fetcher = async () => { const lists = await findAll(); return lists; };
+
 
 
 const UserIndex = () => {
@@ -49,11 +49,14 @@ const UserIndex = () => {
                 <TableBody className={`${!users && 'flex items-center justify-center'}`}>
                     {
                         users?.map((user: User) => (
-                            <TableRow>
-                                <TableCell className="font-medium">{user.name}</TableCell>
-                                <TableCell>{user.email}</TableCell>
-                                <TableCell className="text-right">Ver incidencias</TableCell>
-                            </TableRow>
+                            <div key={user.id}>
+                                <TableRow>
+                                    <TableCell className="font-medium">{user.name}</TableCell>
+                                    <TableCell>{user.email}</TableCell>
+                                    <TableCell className="text-right">Ver incidencias</TableCell>
+                                </TableRow>
+
+                            </div>
                         ))
                     }
                 </TableBody>

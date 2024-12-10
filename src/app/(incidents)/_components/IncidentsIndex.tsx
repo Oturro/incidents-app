@@ -13,8 +13,8 @@ import { Incident } from '@prisma/client'
 
 import { useIncidents } from '../hooks/useIncidents'
 import CreateIncidentDialog from './CreateIncidentDialog'
-import { Button } from '@/components/ui/button'
-import { Delete, DeleteIcon, Edit, Trash } from 'lucide-react'
+
+
 import EditIncidentDialog from './EditIncidentDialog'
 import DestroyIncidentDialog from './DestroyIncidentDialog'
 
@@ -22,7 +22,7 @@ import DestroyIncidentDialog from './DestroyIncidentDialog'
 
 
 const IncidentsIndex = () => {
-    const { incidents, error, deleteIncident } = useIncidents();
+    const { incidents, error } = useIncidents();
     
 
     if (error) return <div>Error cargando las incidencias</div>;
@@ -59,9 +59,6 @@ const IncidentsIndex = () => {
                                 <TableCell className="font-medium">{incident.title}</TableCell>
                                 <TableCell>{incident.description}</TableCell>
                                 <TableCell className='flex justify-end space-x-1'>
-                                    {/* <Button variant={'ghost'} size='sm'>
-                                        <Delete />
-                                    </Button> */}
                                     <EditIncidentDialog id={incident.id} />
                                     <DestroyIncidentDialog id={incident.id} />
                                     

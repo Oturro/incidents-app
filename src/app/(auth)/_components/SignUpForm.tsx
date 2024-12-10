@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import React, { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { loginAction, signupAction } from '../actions/auth.actions'
+import { signupAction } from '../actions/auth.actions'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 

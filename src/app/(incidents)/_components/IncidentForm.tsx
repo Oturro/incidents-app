@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from '@/components/ui/textarea'
 
 interface IncidentFormProps {
-    onSubmit: (values: any) => void
+    onSubmit: (values: { title: string; description: string }) => void
 }
 
 

@@ -1,22 +1,22 @@
-import React, { use, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
+    
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-import IncidentForm from './IncidentForm'
-import { useIncidents } from '../hooks/useIncidents'
-import { Edit, Plus } from 'lucide-react'
+
+
+import { Edit } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import EditIncidentForm from './EditIncidentForm'
 import { useEditIncidents } from '../hooks/useEditIncident'
 
 
-const EditIncidentDialog = ({id}:{id:any }) => {
+const EditIncidentDialog = ({id}:{id:string }) => {
     // const { createUser } = useUsers()
     const { updateIncident, incident } = useEditIncidents(id)
     
@@ -24,7 +24,7 @@ const EditIncidentDialog = ({id}:{id:any }) => {
     const [open, setOpen] = useState<boolean>(false)
 
 
-    const submit = async (values: any) => {
+    const submit = async (values: { title: string; description: string, closed: boolean}) => {
         await updateIncident(values)
         setOpen(false)
     }

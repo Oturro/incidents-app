@@ -1,8 +1,8 @@
-import useSWR, { MutatorCallback, mutate } from 'swr';
-import { findAll, create, update, findOne, destroy } from '@/app/actions/incidents.actions';
+import useSWR from 'swr';
+import { update } from '@/app/actions/incidents.actions';
 import { useToast } from '@/hooks/use-toast';
 import { fetcherI } from './useIncidents';
-import { useState } from 'react';
+
 
 // const fetcher = async () => {
 //     const incidents = await findAll();
@@ -13,7 +13,7 @@ import { useState } from 'react';
 //     return incidents;
 // };
 
-export const useEditIncidents = (id:any) => {
+export const useEditIncidents = (id:string) => {
     const { toast } = useToast()
 
     
@@ -40,7 +40,7 @@ export const useEditIncidents = (id:any) => {
         } catch (error) {
             toast({
                 title: "Error",
-                description: "No se pudo editar la incidencia!",
+                description: "No se pudo editar la incidencia!:" + error,
             })
             // mutate(prevData => prevData?.filter(incident => incident.id !== newIncident.id), false);
         }
@@ -49,7 +49,6 @@ export const useEditIncidents = (id:any) => {
     async function destroyed () {
         try {
             if(!id) return
-            const inci = await destroy(id)
             mutate()
         } catch (error) {
             console.error(error)

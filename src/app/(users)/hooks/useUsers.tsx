@@ -1,4 +1,4 @@
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 import { findAll, create } from '@/app/actions/users.actions';
 import { useToast } from '@/hooks/use-toast';
 

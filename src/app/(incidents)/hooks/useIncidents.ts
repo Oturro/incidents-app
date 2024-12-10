@@ -39,7 +39,7 @@ export const useIncidents = () => {
         } catch (error) {
             toast({
                 title: "Error",
-                description: "No se pudo insertar la incidencia!",
+                description: "No se pudo insertar la incidencia!" + error,
             })
             mutate(prevData => prevData?.filter(incident => incident.id !== newIncident.id), false);
         }
@@ -58,7 +58,7 @@ export const useIncidents = () => {
         } catch (error) {
             toast({
                 title: "Error",
-                description: "Ha ocurrido un error y no se ha podido eliminar la incidencia"
+                description: "Ha ocurrido un error y no se ha podido eliminar la incidencia" + error
             })
             mutate()
         }

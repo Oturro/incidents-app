@@ -1,7 +1,7 @@
 "use server"
 
 import { z } from "zod"
-import { auth, signIn, signOut } from "../../../../auth"
+import { auth, signIn } from "../../../../auth"
 import { loginSchema, signUpSchema } from "@/lib/ZodSchemas"
 import { AuthError } from "next-auth"
 import { db } from "@/lib/db"
@@ -26,9 +26,9 @@ export const loginAction = async (values: z.infer<typeof loginSchema>) => {
 }
 
 export const signupAction = async (values: z.infer<typeof signUpSchema>) => {
-    const session = await auth()
+    
     try {
-        const {data, error, success} = signUpSchema.safeParse(values)
+        const {data, success} = signUpSchema.safeParse(values)
 
         if(!success) {
             return { error: "Datos inválidos" }

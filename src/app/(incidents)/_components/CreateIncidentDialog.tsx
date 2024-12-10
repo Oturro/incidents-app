@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -12,6 +11,7 @@ import IncidentForm from './IncidentForm'
 import { useIncidents } from '../hooks/useIncidents'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Incident } from '@prisma/client'
 
 
 const CreateIncidentDialog = () => {
@@ -21,7 +21,7 @@ const CreateIncidentDialog = () => {
     const [open, setOpen] = useState<boolean>(false)
 
 
-    const submit = async (values: any) => {
+    const submit = async (values: { title: string; description: string }) => {
         await createIncident(values)
         setOpen(false)
     }

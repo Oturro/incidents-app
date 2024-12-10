@@ -19,8 +19,14 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from '@/components/ui/textarea'
 
 interface IncidentFormProps {
-    onSubmit: (values:any) => void
-    incident: any
+    onSubmit: (values: { title: string; description: string, closed: boolean}) => void
+    incident: {
+        id: string;
+        title: string;
+        description: string;
+        userId: string | null;
+        closed: boolean;
+    } | undefined
 }
 
 
@@ -32,15 +38,19 @@ export const EditIncidentForm = ({
     const form = useForm<z.infer<typeof createIncidentSchema>>({
         resolver: zodResolver(createIncidentSchema),
         defaultValues: {
-            title: `${incident.title}`,
-            description: `${incident.description}`
+            title: `${incident?.title}`,
+            description: `${incident?.description}`
         },
     })
 
     function handleOnSubmit(values: z.infer<typeof createIncidentSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
-        onSubmit(values)
+        const updaValues = {
+            ...values,
+            closed: false
+        }
+        onSubmit(updaValues)
         // console.log(createdUser)
 
     }

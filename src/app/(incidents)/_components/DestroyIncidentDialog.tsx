@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { useIncidents } from '../hooks/useIncidents'
 
 
-const DestroyIncidentDialog = ({ id }: { id: any }) => {
+const DestroyIncidentDialog = ({ id }: { id: string }) => {
     
     const { deleteIncident } = useIncidents()
 

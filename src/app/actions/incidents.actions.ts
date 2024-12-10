@@ -1,7 +1,7 @@
 'use server'
 
 import { db } from "@/lib/db"
-import { Incident, User } from "@prisma/client"
+import { Incident } from "@prisma/client"
 import { auth } from "../../../auth"
 
 export async function create(incident: Incident) {
@@ -14,7 +14,7 @@ export async function create(incident: Incident) {
         }
     })
     try {
-        const { title, description, userId, closed} = incident
+        const { title, description, closed} = incident
         const createdIncident = await db.incident.create({
             data: {
                 title, 
