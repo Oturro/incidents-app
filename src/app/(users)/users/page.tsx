@@ -1,11 +1,31 @@
 'use client'
 
+import { GetServerSideProps } from 'next';
 import { auth } from '../../../../auth'
 import UserIndex from '../_components/UserIndex'
+import { Session } from '@/app/(incidents)/incidents/page';
 
-export default async function UserPage() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await auth();
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login', // redirigir a la página de inicio de sesión si no está autenticado 
+        permanent: false,
+      },
+    };
+  }
 
-  const session = await auth()
+  return {
+    props: {
+      session, // pasar la sesión como una prop al componente 
+    },
+  };
+};
+
+
+export default async function UserPage({ session }: { session: Session }) {
+
   console.log(session)
   if (session?.user.role !== "admin") {
     return (
