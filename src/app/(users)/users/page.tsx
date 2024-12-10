@@ -3,7 +3,7 @@
 import { auth } from '../../../../auth'
 import UserIndex from '../_components/UserIndex'
 
-export default async function page() {
+export default async function UserPage() {
 
   const session = await auth()
   console.log(session)

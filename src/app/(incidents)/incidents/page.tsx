@@ -4,7 +4,7 @@
 import { auth } from '../../../../auth'
 import IncidentsIndex from '../_components/IncidentsIndex'
 
-export default async function page() {
+export default async function IncidentsPage() {
 
   const session = await auth()
 

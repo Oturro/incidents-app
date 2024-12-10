@@ -1,7 +1,7 @@
 import React from 'react'
 import SignUpForm from '../_components/SignUpForm'
 
-export default function LoginPage() {
+export default function SignUpPage() {
   return (
     <main className='w-full min-h-[100vh] bg-no-repeat bg-cover bg-center flex items-center justify-center' style={{ 
         backgroundImage: "url('body.jpg')"
