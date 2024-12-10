@@ -1,7 +1,7 @@
 "use server"
 
 import { z } from "zod"
-import { auth, signIn } from "../../../../auth"
+import { signIn } from "../../../../auth"
 import { loginSchema, signUpSchema } from "@/lib/ZodSchemas"
 import { AuthError } from "next-auth"
 import { db } from "@/lib/db"
