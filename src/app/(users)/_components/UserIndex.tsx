@@ -10,7 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import CreateUserDialog from './CreateUserDialog'
-import { findAll } from '@/app/actions/users.actions'
+
 import { User } from '@prisma/client'
 
 import { useUsers } from '../hooks/useUsers'

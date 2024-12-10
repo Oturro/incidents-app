@@ -11,7 +11,7 @@ import IncidentForm from './IncidentForm'
 import { useIncidents } from '../hooks/useIncidents'
 import { Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Incident } from '@prisma/client'
+
 
 
 const CreateIncidentDialog = () => {

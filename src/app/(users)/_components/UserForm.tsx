@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input"
 
 
 interface UserFormProps {
-    onSubmit: (values:any) => void
+    onSubmit: (values: { name: string; email: string }) => void
 }
 
 
