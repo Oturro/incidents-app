@@ -7,6 +7,7 @@ import IncidentsIndex from '../_components/IncidentsIndex'
 export default async function IncidentsPage() {
 
   const session = await auth()
+  console.log('Session:', session)
 
   if (!session) {
     return <div>Not authenticated</div>

@@ -9,7 +9,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     session: { strategy: "jwt" },
     callbacks: {
         jwt({ token, user }) {
-            console.log('@@@@@@@@@User....', user)
+            
             if (user) { // User is available during sign-in
                 token.id = user.id
                 token.role = user.role
