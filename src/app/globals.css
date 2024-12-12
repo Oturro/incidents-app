@@ -85,7 +85,7 @@ body {
     @apply text-[18px] font-bold
   }
   .title {
-    @apply text-[42px] font-bold
+    @apply text-[26px] font-bold
   }
   .title-lg {
     @apply text-[52px] font-bold

@@ -69,7 +69,7 @@ export const EditIncidentForm = ({
                                     <Input placeholder="Título de la incidendia" {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    Debe poner un titulo claro y descriptivo.
+                                    Debe poner un título claro y descriptivo.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -88,16 +88,13 @@ export const EditIncidentForm = ({
                                         {...field}
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    You can <span>@mention</span> other users and organizations.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
 
 
                         )}
                     />
-                    <Button type="submit">Submit</Button>
+                    <Button type="submit">Guardar</Button>
                 </form>
             </Form>
         </>

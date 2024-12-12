@@ -28,23 +28,23 @@ const SignUpForm = () => {
         },
     })
 
-    async function handleOnSubmit (values: z.infer<typeof signUpSchema>) {
+    async function handleOnSubmit(values: z.infer<typeof signUpSchema>) {
         //:@TODO
         setError(null)
         startTransition(async () => {
             const response = await signupAction(values)
-            if(response.error) { 
-                setError(response.error) 
-            }else {
+            if (response.error) {
+                setError(response.error)
+            } else {
                 router.push('/incidents')
             }
         })
-        
+
     }
 
     return (
         <>
-            <h1 className='title text-center'>Registro</h1>
+            <h1 className='title text-center pb-4'>Regístrate aquí</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleOnSubmit)} className="space-y-8">
 
@@ -64,7 +64,7 @@ const SignUpForm = () => {
                             </FormItem>
                         )}
                     />
-                    
+
                     <FormField
                         control={form.control}
                         name="secondname"
@@ -114,13 +114,21 @@ const SignUpForm = () => {
                         )}
                     />
                     {
-                        <FormMessage>{ error }</FormMessage>
+                        <FormMessage>{error}</FormMessage>
                     }
-                    <Button disabled={isPending} type="submit" className='bg-green-700'>Registrarse</Button>
+                    <div className="flex w-fit mx-auto" >
+                        <Button disabled={isPending} type="submit" className='bg-green-700'>Registrarse</Button>
+                        <Button
+                            type="button"
+                            className='bg-yellow-500 ml-6 text-white'
+                            onClick={() => form.reset({ name: "", secondname: "", lastname: "", email: "", password: "" })}
+                        >
+                            Limpiar
+                        </Button>
+                    </div>
                     <div className='text-center w-full'>
                         <p className='text-[18px]' >Ya tienes una cuenta?</p>
                         <Link href={'/login'} >Inicia sesión</Link>
-                        {/* <p className=''>Registrate aquí</p> */}
                     </div>
                 </form>
             </Form>

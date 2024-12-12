@@ -3,10 +3,13 @@
 import { Button } from '@/components/ui/button'
 import React, { useTransition } from 'react'
 import { signOut } from 'next-auth/react'
+import { useSession } from "next-auth/react"
 
 
 
 export default function LogoutButton() {
+
+	
 
 	const [isPending, startTransition] = useTransition()
 
@@ -20,6 +23,6 @@ export default function LogoutButton() {
 	}
 
 	return (
-		<Button disabled={isPending} onClick={handleClick}>Logout</Button>
+		<Button variant={"link"} disabled={isPending} onClick={handleClick}>Logout</Button>
 	)
 }

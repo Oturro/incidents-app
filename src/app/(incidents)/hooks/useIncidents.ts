@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { findAll, create, destroy } from '@/app/actions/incidents.actions';
 import { useToast } from '@/hooks/use-toast';
+import { Incident } from '@prisma/client';
 
 
 
@@ -11,18 +12,19 @@ export const fetcherI = async () => {
 };
 
 export const useIncidents = () => {
+
     const { toast } = useToast()
     const { data, error, mutate } = useSWR('findAllIncidents', fetcherI);
-    
 
 
     async function createIncident(values: { title: string; description: string }) {
 
          
-
-        const newIncident = {
+        const newIncident: Incident = {
             id: Date.now().toString(),
-            userId: 'cm4bquvlp0001k69gdqb4j9se',
+            userId: null,
+            modifiedAt: null,
+            createdAt: null,
             closed: false,
             ...values
         };

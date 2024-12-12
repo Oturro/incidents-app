@@ -29,7 +29,7 @@ const IncidentsIndex = () => {
 
     return (
         <>
-            <div className='flex items-center' >
+            <div className='flex items-center mt-8' >
                 <h1 className='title'>Incidencias</h1>
                 <div className='ml-auto'>
                     <CreateIncidentDialog />

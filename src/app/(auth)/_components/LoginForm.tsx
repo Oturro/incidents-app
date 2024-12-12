@@ -39,7 +39,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <h1 className='title text-center w-full'>Iniciar sesión</h1>
+            <h1 className='title text-center w-full'>Sistema de Incidencias Online</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleOnSubmit)} className="flex flex-col justify-center space-y-4">
                     <FormField

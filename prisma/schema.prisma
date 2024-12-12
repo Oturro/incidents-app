@@ -19,6 +19,8 @@ model Incident {
   title           String
   description     String
   user            User?          @relation(fields: [userId], references: [id])
+  createdAt       DateTime?      @default(now())
+  modifiedAt      DateTime?      @updatedAt
   userId          String?
   closed          Boolean       @default(false)
 }
