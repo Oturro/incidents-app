@@ -1,12 +1,15 @@
-// 'use client'
+'use client'
 
 
+import { useSession } from 'next-auth/react'
 import { auth } from '../../../../auth'
 import IncidentsIndex from '../_components/IncidentsIndex'
 
-export default async function IncidentsPage() {
+export default function IncidentsPage() {
 
-  const session = await auth()
+  // const session = await auth()
+
+  const session = useSession()
 
   if (!session) {
     return <div>Not authenticated</div>
