@@ -11,6 +11,7 @@ import { z } from 'zod'
 import { loginAction } from '../actions/auth.actions'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const LoginForm = () => {
     const [error, setError] = useState<string | null>(null)
@@ -39,7 +40,20 @@ const LoginForm = () => {
 
     return (
         <>
-            <h1 className='title text-center w-full'>Sistema de Incidencias Online</h1>
+            {/* <h1 className='title text-center w-full'> */}
+            <p className='flex flex-col w-full justify-center gap-2 items-center'>
+                    <Image
+                        alt='logo'
+                        src={'/logov2.svg'}
+                        width={50}
+                        height={0}
+                    />
+                    <div className='flex-col text-center text-[32px] gap-2 leading-10'>
+                        <p>Incidencias</p>
+                        <p>Online</p>
+                    </div>
+                </p>
+            {/* </h1> */}
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleOnSubmit)} className="flex flex-col justify-center space-y-4">
                     <FormField

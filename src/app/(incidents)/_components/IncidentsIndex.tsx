@@ -22,6 +22,7 @@ import DestroyIncidentDialog from './DestroyIncidentDialog'
 
 
 const IncidentsIndex = () => {
+
     const { incidents, error } = useIncidents();
     
 
@@ -47,8 +48,10 @@ const IncidentsIndex = () => {
                 </TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">Titulo</TableHead>
+                        <TableHead>Titulo</TableHead>
                         <TableHead>Descripción</TableHead>
+                        <TableHead>Creado</TableHead>
+                        <TableHead>Modificado</TableHead>
                         <TableHead className='text-right'>Opciones</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -58,6 +61,8 @@ const IncidentsIndex = () => {
                             <TableRow key={incident.id}>
                                 <TableCell className="font-medium">{incident.title}</TableCell>
                                 <TableCell>{incident.description}</TableCell>
+                                <TableCell>{incident.createdAt?.toLocaleDateString()}</TableCell>
+                                <TableCell>{incident.modifiedAt?.toLocaleDateString()}</TableCell>
                                 <TableCell className='flex justify-end space-x-1'>
                                     <EditIncidentDialog id={incident.id} />
                                     <DestroyIncidentDialog id={incident.id} />
