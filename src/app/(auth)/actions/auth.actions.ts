@@ -26,7 +26,7 @@ export const loginAction = async (values: z.infer<typeof loginSchema>) => {
 }
 
 
-export const resetAction = async (values: z.infer<typeof resetPasswSchema>, email: string) => {
+export const resetAction = async (values: z.infer<typeof resetPasswSchema>) => {
 
     try {
         const {data, success} = resetPasswSchema.safeParse(values)
@@ -35,18 +35,31 @@ export const resetAction = async (values: z.infer<typeof resetPasswSchema>, emai
             return { error: "Datos inválidos" }
         }
 
-        const password = await bcrypt.hash(data.newpass, 10)
-        
-        await db.user.update({
+        const user = await db.user.findFirst({
             where: {
-                email
+                email: data.email,
             },
-            data: {
-                password
-            }
+
         })
 
-        return ({ success: true })
+        if (!user) {
+            return { error: "El usuario no existe" }
+        } else {
+            const password = await bcrypt.hash(data.newpass, 10)
+            
+            await db.user.update({
+                where: {
+                    email: user.email as string
+                },
+                data: {
+                    password
+                }
+            })
+    
+            return ({ success: true })
+
+        }
+
     } catch (error) {
         if(error instanceof AuthError) {
             return { error: error.cause?.err?.message }

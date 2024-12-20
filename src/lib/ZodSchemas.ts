@@ -52,6 +52,9 @@ export const signUpSchema = z.object({
 
 
 export const resetPasswSchema = z.object({ 
+    email: string({ 'required_error': 'Debe poner el email' })
+        .min(5, 'Debe tener mínimo 5 caracteres')
+        .email("Email inválido"),
     newpass: z.string({ required_error: 'Debe poner el password' }) 
         .min(8, "Debe tener mínimo 8 caracteres") 
         .max(25, "Se acepta como máximo 25 caracteres") 

@@ -1,12 +1,7 @@
-import ResetPasswordForm from '../../_components/ResetPasswordForm'
+import ResetPasswordForm from "../_components/ResetPasswordForm";
 
-export default function ResetPage({
-    params,
-}: {
-    params: { email: string }
-}) {
-    
-    const email = decodeURIComponent(params.email as string)
+
+export default function ResetPage() {
     
     return (
 
@@ -19,7 +14,7 @@ export default function ResetPage({
                     backdropFilter: 'blur(5px)'
                 }}
             >
-                <ResetPasswordForm email={email} />
+                <ResetPasswordForm />
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ import { z } from 'zod'
 import { resetAction } from '../actions/auth.actions'
 import Link from 'next/link'
 
-const ResetPasswordForm = ({ email }: { email: string }) => {
+const ResetPasswordForm = () => {
     const [error, setError] = useState<string | null>(null)
     const [info, setInfo] = useState<string | null>(null)
     const [isPending, startTransition] = useTransition()
@@ -19,6 +19,7 @@ const ResetPasswordForm = ({ email }: { email: string }) => {
     const form = useForm<z.infer<typeof resetPasswSchema>>({
         resolver: zodResolver(resetPasswSchema),
         defaultValues: {
+            email: "",
             newpass: "",
             confirm: ""
         },
@@ -28,7 +29,7 @@ const ResetPasswordForm = ({ email }: { email: string }) => {
         //:@TODO
         setError(null)
         startTransition(async () => {
-            const response = await resetAction(values, email)
+            const response = await resetAction(values)
             if (response.error) {
                 setError(response.error)
             } else {
@@ -49,6 +50,20 @@ const ResetPasswordForm = ({ email }: { email: string }) => {
             </p>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleOnSubmit)} className="flex flex-col justify-center space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem className='pt-4'>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                    <Input type="email" placeholder="Entre el email de su cuenta" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
                     <FormField
                         control={form.control}
                         name="newpass"

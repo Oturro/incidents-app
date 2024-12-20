@@ -16,7 +16,6 @@ import Image from 'next/image'
 const LoginForm = () => {
     const [error, setError] = useState<string | null>(null)
     const [isPending, startTransition] = useTransition()
-    const [emailReset, setEmailReset] = useState<string | null>(null)
     const router = useRouter()
 
     const form = useForm<z.infer<typeof loginSchema>>({
@@ -34,9 +33,7 @@ const LoginForm = () => {
             const response = await loginAction(values)
             if (response.error) { 
                 setError(response.error)
-                if(response.error == "Password incorrecto!") {
-                    setEmailReset(values.email)
-                }
+                
             } else {
                 router.push('/incidents')
             }
@@ -103,7 +100,7 @@ const LoginForm = () => {
                             error == "Password incorrecto!" && emailReset !=null && <p className='text-[16px] text-green-600'>Ha olvidado su contraseña? Haga click <span><Link href={`/reset/${emailReset}`} className='text-red-600' >aquí</Link></span></p>
                         } */}
                         {
-                            <p className='text-[16px] text-green-600'>Ha olvidado su contraseña? Haga click <span><Link href={`/reset/${emailReset}`} className='text-red-600' >aquí</Link></span></p>
+                            <p className='text-[16px] text-green-600'>Ha olvidado su contraseña? Haga click <span><Link href={`/reset`} className='text-red-600' >aquí</Link></span></p>
                         }
                         
                     </div>
