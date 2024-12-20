@@ -99,8 +99,11 @@ const LoginForm = () => {
                     <div className='text-center w-full'>
                         <p className='text-[18px]' >No tienes una cuenta?</p>
                         <Link href={'/signup'} >Registrate aquí</Link>
-                        {
+                        {/* {
                             error == "Password incorrecto!" && emailReset !=null && <p className='text-[16px] text-green-600'>Ha olvidado su contraseña? Haga click <span><Link href={`/reset/${emailReset}`} className='text-red-600' >aquí</Link></span></p>
+                        } */}
+                        {
+                            <p className='text-[16px] text-green-600'>Ha olvidado su contraseña? Haga click <span><Link href={`/reset/${emailReset}`} className='text-red-600' >aquí</Link></span></p>
                         }
                         
                     </div>
