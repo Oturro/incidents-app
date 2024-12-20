@@ -48,3 +48,20 @@ export const signUpSchema = z.object({
         .regex(/[^a-zA-Z0-9]/, { message: "La contraseña debe incluir al menos un carácter especial" })
         
 })
+
+
+
+export const resetPasswSchema = z.object({ 
+    newpass: z.string({ required_error: 'Debe poner el password' }) 
+        .min(8, "Debe tener mínimo 8 caracteres") 
+        .max(25, "Se acepta como máximo 25 caracteres") 
+        .regex(/[A-Z]/, { message: "La contraseña debe incluir al menos una letra mayúscula" }) 
+        .regex(/[0-9]/, { message: "La contraseña debe incluir al menos un número" }) 
+        .regex(/[^a-zA-Z0-9]/, { 
+            message: "La contraseña debe incluir al menos un carácter especial" 
+        }), 
+    confirm: z.string({ required_error: "Debe confirmar el password" }) 
+})
+.refine((data) => data.newpass === data.confirm, { 
+    message: "Las contraseñas no coinciden", path: ["confirm"], 
+});

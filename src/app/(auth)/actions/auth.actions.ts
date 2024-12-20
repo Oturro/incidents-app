@@ -2,7 +2,7 @@
 
 import { z } from "zod"
 import { signIn } from "../../../../auth"
-import { loginSchema, signUpSchema } from "@/lib/ZodSchemas"
+import { loginSchema, resetPasswSchema, signUpSchema } from "@/lib/ZodSchemas"
 import { AuthError } from "next-auth"
 import { db } from "@/lib/db"
 import bcrypt from 'bcryptjs'
@@ -22,6 +22,37 @@ export const loginAction = async (values: z.infer<typeof loginSchema>) => {
         }
 
         return { error: "error 500" }
+    }
+}
+
+
+export const resetAction = async (values: z.infer<typeof resetPasswSchema>, email: string) => {
+
+    try {
+        const {data, success} = resetPasswSchema.safeParse(values)
+
+        if(!success) {
+            return { error: "Datos inválidos" }
+        }
+
+        const password = await bcrypt.hash(data.newpass, 10)
+        
+        await db.user.update({
+            where: {
+                email
+            },
+            data: {
+                password
+            }
+        })
+
+        return ({ success: true })
+    } catch (error) {
+        if(error instanceof AuthError) {
+            return { error: error.cause?.err?.message }
+        }
+
+        return { error: `error 500 ${error}` }
     }
 }
 
